@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour {
             turn = false;
             indexPosition += num;
 
+            CheckRotation();
+
             if (indexPosition <= 0)
             {
                 indexPosition = 0;
@@ -80,6 +82,56 @@ public class PlayerController : MonoBehaviour {
         enemyController.SetTurn(true);
 
         anim.SetBool("isWalking", false);
+    }
+
+    //Comprobar si tenemos que girar
+    void CheckRotation()
+    {
+        if (indexPosition <= 0)
+        {
+            indexPosition = 0;
+        }
+        else if (indexPosition >= Position.Length)
+        {
+            indexPosition = Position.Length - 1;
+        }
+
+        if (Position[indexPosition].transform.position.x > this.gameObject.transform.position.x)
+        {
+            Debug.Log("VAMOS DERECHA");
+            if (this.gameObject.transform.rotation.y < 0)
+            {
+                Debug.Log("GIRAMOS A LA DERECHA");
+                StartCoroutine(Rotate(180));
+            }
+        }
+
+        if (Position[indexPosition].transform.position.x < this.gameObject.transform.position.x)
+        {
+            Debug.Log("VAMOS IZQUIERDA");
+            if (this.gameObject.transform.rotation.y >= 0)
+            {
+                Debug.Log("GIRAMOS A LA IZQUIERDA");
+                StartCoroutine(Rotate(-180));
+            }
+        }
+    }
+
+    //Rotacion
+    IEnumerator Rotate(float grados)
+    {
+        float startRotation = transform.eulerAngles.y;
+        float endRotation = startRotation + grados;
+        float t = 0.0f;
+        float duracion = 0.5f;
+
+        while (t < duracion)
+        {
+            t += Time.deltaTime;
+            float yRotation = Mathf.Lerp(startRotation, endRotation, t / duracion) % 360.0f;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
+            yield return null;
+        }
     }
 
     public int GetIndexPosition()
