@@ -77,10 +77,19 @@ public class PlayerController : MonoBehaviour {
         if (enemyController.GetIndexPosition() == indexPosition)
         {
             enemyController.TakeDamage(damage);
+            StartCoroutine(HitAnim());
         }
+        else
+        {
+            enemyController.SetTurn(true);
+            anim.SetBool("isWalking", false);
+        }
+    }
 
+    IEnumerator HitAnim()
+    {
+        yield return new WaitForSeconds(1f);
         enemyController.SetTurn(true);
-
         anim.SetBool("isWalking", false);
     }
 
@@ -98,20 +107,16 @@ public class PlayerController : MonoBehaviour {
 
         if (Position[indexPosition].transform.position.x > this.gameObject.transform.position.x)
         {
-            Debug.Log("VAMOS DERECHA");
             if (this.gameObject.transform.rotation.y < 0)
             {
-                Debug.Log("GIRAMOS A LA DERECHA");
                 StartCoroutine(Rotate(180));
             }
         }
 
         if (Position[indexPosition].transform.position.x < this.gameObject.transform.position.x)
         {
-            Debug.Log("VAMOS IZQUIERDA");
             if (this.gameObject.transform.rotation.y >= 0)
             {
-                Debug.Log("GIRAMOS A LA IZQUIERDA");
                 StartCoroutine(Rotate(-180));
             }
         }

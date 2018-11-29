@@ -44,7 +44,7 @@ public class HouseController : MonoBehaviour {
 
         if(enemyController.GetHealth() <= 0)
         {
-            SceneManager.LoadScene("LevelTransition", LoadSceneMode.Single);
+            StartCoroutine(EnemyDeathAnim());
         }
 
         if(playerController.GetTurn() == false)
@@ -71,5 +71,11 @@ public class HouseController : MonoBehaviour {
 
         PlayerHealthBar.value = gameStats.GetPlayerHealth();
         EnemyHealthBar.value = enemyController.GetHealth();
+    }
+
+    IEnumerator EnemyDeathAnim()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("LevelTransition", LoadSceneMode.Single);
     }
 }

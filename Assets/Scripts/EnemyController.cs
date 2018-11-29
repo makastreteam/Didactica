@@ -42,12 +42,17 @@ public class EnemyController : MonoBehaviour {
     }
 	
 	void Update ()
-    {     
-        if (turn == true)
+    {
+        if (turn == true && health > 0)
         {
             turn = false;
 
             MovePosition();
+        }
+
+        if(health <= 0)
+        {
+            anim.SetTrigger("death");
         }
 	}
 
@@ -86,11 +91,11 @@ public class EnemyController : MonoBehaviour {
         {
             if (Random.Range(0, 100) <= 80 || indexPosition == (Position.Length - 1))
             {
-                indexPosition -= Random.Range(1, 4);
+                indexPosition -= Random.Range(1, 5);
             }
             else
             {
-                indexPosition += Random.Range(1, 4);
+                indexPosition += Random.Range(1, 5);
             }
 
             if (indexPosition <= target)
@@ -102,11 +107,11 @@ public class EnemyController : MonoBehaviour {
         {
             if (Random.Range(0, 100) <= 80 || indexPosition == 0)
             {
-                indexPosition += Random.Range(1, 4);
+                indexPosition += Random.Range(1, 5);
             }
             else
             {
-                indexPosition -= Random.Range(1, 4);
+                indexPosition -= Random.Range(1, 5);
             }
 
             if (indexPosition >= target)
@@ -250,7 +255,13 @@ public class EnemyController : MonoBehaviour {
 
     public void TakeDamage(int amount)
     {
+        anim.SetTrigger("getHit");
         this.health -= amount;
+
+        if(health <= 0)
+        {
+            anim.SetTrigger("death");
+        }
     }
 
     public int GetAttackIndex()
