@@ -17,10 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTransition.unity
     guid: d406cfdc250bb8a42b189e27cf9cedbb
-  - enabled: 1
-    path: Assets/Scenes/Map.unity
-    guid: c94087837ba6ea4439e668f0834c46dc
-  - enabled: 1
-    path: Assets/Scenes/Game_Alquimia.unity
-    guid: fcff8f5268c410546bfbe5838dd40621
   m_configObjects: {}

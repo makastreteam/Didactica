@@ -64,7 +64,6 @@
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\HouseController.cs" />
      <Compile Include="Assets\Scripts\LevelTransition.cs" />
-     <Compile Include="Assets\Scripts\MapController.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\MovePoints.cs" />
      <Compile Include="Assets\Scripts\Pawn.cs" />
