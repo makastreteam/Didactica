@@ -3057,6 +3057,7 @@ GameObject:
   - component: {fileID: 641236949}
   - component: {fileID: 641236948}
   - component: {fileID: 641236947}
+  - component: {fileID: 641236951}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3141,6 +3142,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &641236951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641236946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c7d93b32b66be4095414c0c3c49fda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &654328038
 GameObject:
   m_ObjectHideFlags: 0
@@ -8943,7 +8955,7 @@ Prefab:
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -8954,11 +8966,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 641236951}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MovePosition
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
