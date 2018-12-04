@@ -13,7 +13,8 @@ public class MovePoints: MonoBehaviour{
 
     int index = 0;
     float minDist = 0.01f;
-    float speed = 1;
+    [Range(0.5f, 10)]
+    public float speed = 1;
     bool start = true;
 
     public void Move(Transform target)
