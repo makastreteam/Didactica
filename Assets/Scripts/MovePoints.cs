@@ -1,26 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-/// <summary>
-/// State in which the enemy goes through its patrol points.
-/// When transitioning back to this state, the enemy continues its patrol route where he left of.
-/// </summary>
+
 public class MovePoints: MonoBehaviour{
 
 	public GameObject[] Points;
-
+    LevelManager LM;
     int index = 0;
     float minDist = 0.01f;
+
     [Range(0.5f, 10)]
     public float speed = 1;
+    
     bool start = true;
+
+    private void Start()
+    {
+        LM = LevelManager.GetLevelManager;
+        if (!LM.levelsLoaded)
+        {
+            for (int i = 0; i < Points.Length; i++)
+            {
+                if (Points[i].name.Contains("Level"))
+                {
+                    LM.levels.Add(i);
+                }
+            }
+        }
+        LM.levelsLoaded = true;
+        StartCoroutine(MoveToNextLevel());
+    }
 
     public void Move(Transform target)
     {
-        //transform.LookAt(new Vector3(Points[index].transform.position.x, transform.position.y, Points[index].transform.position.z));
-        transform.position =Vector3.MoveTowards(transform.position, target.position,speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position,speed * Time.deltaTime);
     }
 
     IEnumerator RotateTowards(Transform target)
@@ -37,40 +51,31 @@ public class MovePoints: MonoBehaviour{
         }
     }
 
-    void Update ()
+    public IEnumerator MoveToNextLevel()
     {
-        if(start == true)
-        {
-            float dist = Vector3.Distance(transform.position, Points[index].transform.position);
+        bool ended = false;
+        int start = LM.GetCurrentLevel(), end = LM.GetNextLevel();
+        Debug.Log("Start " + start + " End" + end);
 
+        transform.position = Points[start].transform.position;
+        while (!ended)
+        {
+            float dist = Vector3.Distance(transform.position, Points[start].transform.position);
             if (dist > minDist)
             {
-                Move(Points[index].transform);
-                //StartCoroutine(RotateTowards(Points[index].transform));
+                Move(Points[start].transform);
             }
             else
             {
-                if (index + 1 == Points.Length)
-                {
-                    index = 0;
-                }
-                else
-                {
-                    index++;
-                }
+                if (start == end) ended = true;
+                else start++;
             }
+
+
+            yield return null;
         }
-	}
 
-	public void OnStateEnter ()
-    {
-        start = true;
-	}
-
-	public void OnStateLeave ()
-    {
-        index = 1;
-        start = false;
+        Debug.Log("FINAL -> Start " + start + " End" + end);
     }
 
 }
