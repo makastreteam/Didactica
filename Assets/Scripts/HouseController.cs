@@ -76,6 +76,7 @@ public class HouseController : MonoBehaviour {
     IEnumerator EnemyDeathAnim()
     {
         yield return new WaitForSeconds(3f);
+        LevelManager.GetLevelManager.NextLevel();
         SceneManager.LoadScene("LevelTransition", LoadSceneMode.Single);
     }
 }

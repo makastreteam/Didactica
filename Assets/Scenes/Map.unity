@@ -487,7 +487,7 @@ Prefab:
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -498,11 +498,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 392240211}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MovePosition
+      value: CallMoveToNextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 114804102378086560, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -1376,8 +1376,8 @@ GameObject:
   - component: {fileID: 392240210}
   - component: {fileID: 392240211}
   m_Layer: 0
-  m_Name: goblin
-  m_TagString: Untagged
+  m_Name: Goblin
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3064,7 +3064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &641236947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3639,7 +3639,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

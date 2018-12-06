@@ -9,7 +9,7 @@ public class MovePoints: MonoBehaviour{
     LevelManager LM;
     int index = 0;
     float minDist = 0.01f;
-
+    bool walking = false;
     [Range(0.5f, 10)]
     public float speed = 1;
     
@@ -37,25 +37,30 @@ public class MovePoints: MonoBehaviour{
         transform.position = Vector3.MoveTowards(transform.position, target.position,speed * Time.deltaTime);
     }
 
-    IEnumerator RotateTowards(Transform target)
+    public void CallMoveToNextLevel()
     {
-        Vector3 direction = new Vector3(target.position.x - transform.position.x, target.position.y - transform.position.y,  transform.position.z);
-        direction.z = 0;
-        Quaternion toRotation = Quaternion.FromToRotation(transform.rotation.eulerAngles, direction);
-        float timer = 0.4f;
-        while ((timer -= Time.deltaTime) > 0)
+        if (!walking)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), speed * Time.deltaTime);
+            //LM.NextLevel();
 
-            yield return null;
+            if (LM.GetCurrentLevel() != LM.GetNextLevel())
+            {
+                StartCoroutine(MoveToNextLevel());
+            }
+            else
+                Debug.Log("No has superado el nivel");
+
         }
+
     }
 
     public IEnumerator MoveToNextLevel()
     {
         bool ended = false;
+        walking = true;
         int start = LM.GetCurrentLevel(), end = LM.GetNextLevel();
         Debug.Log("Start " + start + " End" + end);
+
 
         transform.position = Points[start].transform.position;
         while (!ended)
@@ -71,10 +76,10 @@ public class MovePoints: MonoBehaviour{
                 else start++;
             }
 
-
+            LM.EqualizeLevels();
             yield return null;
         }
-
+        walking = false;
         Debug.Log("FINAL -> Start " + start + " End" + end);
     }
 
