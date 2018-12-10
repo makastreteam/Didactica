@@ -18,6 +18,9 @@ public class HouseController : MonoBehaviour {
     public GameObject Player;
     public GameObject Enemy;
 
+    public Sprite[] enemyBars = new Sprite[13];
+    public GameObject enemyBar;
+
     PlayerController playerController;
     EnemyController enemyController;
 
@@ -28,6 +31,8 @@ public class HouseController : MonoBehaviour {
     void Start()
     {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        enemyBar.GetComponent<Image>().sprite = enemyBars[gameStats.GetLevel()];
+        
 
         playerController = Player.GetComponent<PlayerController>();
         enemyController = Enemy.GetComponent<EnemyController>();
@@ -64,11 +69,11 @@ public class HouseController : MonoBehaviour {
     {
         TimeLeft -= Time.deltaTime;
         TimerText.text = Mathf.Round(TimeLeft).ToString();
-
+        /*
         LevelText.text = "Nivel: " + gameStats.GetLevel().ToString();
         PointsText.text = "Puntos: " + gameStats.GetPoints().ToString();
         AttackText.text = "Proximo ataque: " + enemyController.GetAttackIndex().ToString();
-
+        */
         PlayerHealthBar.value = gameStats.GetPlayerHealth();
         EnemyHealthBar.value = enemyController.GetHealth();
     }

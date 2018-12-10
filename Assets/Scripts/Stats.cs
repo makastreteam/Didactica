@@ -20,7 +20,7 @@ public class Stats : MonoBehaviour {
 
     void Start()
     {
-        level = 1;
+        level = 0;
         points = 0;
         playerHealth = 100;
     }
