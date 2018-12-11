@@ -25,14 +25,16 @@ public class HouseController : MonoBehaviour {
     EnemyController enemyController;
 
     Stats gameStats;
+    TransicionEscena _TransicionEscena;
 
     public float TimeLeft;
 
     void Start()
     {
+        _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
+
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         enemyBar.GetComponent<Image>().sprite = enemyBars[gameStats.GetLevel()];
-        
 
         playerController = Player.GetComponent<PlayerController>();
         enemyController = Enemy.GetComponent<EnemyController>();
@@ -44,6 +46,7 @@ public class HouseController : MonoBehaviour {
 
         if(gameStats.GetPlayerHealth() <= 0)
         {
+            //_TransicionEscena.CambiarEscenaTransicion("Map");
             SceneManager.LoadScene("Score", LoadSceneMode.Single);
         }
 
@@ -55,12 +58,12 @@ public class HouseController : MonoBehaviour {
         if(playerController.GetTurn() == false)
         {
             NumberButtons.SetActive(false);
-            TurnText.text = "ENEMIGO";
+            //TurnText.text = "ENEMIGO";
         }
         else
         {
             NumberButtons.SetActive(true);
-            TurnText.text = "TU TURNO";
+            //TurnText.text = "TU TURNO";
         }
     }
 
@@ -82,6 +85,7 @@ public class HouseController : MonoBehaviour {
     {
         yield return new WaitForSeconds(3f);
         LevelManager.GetLevelManager.NextLevel();
-        SceneManager.LoadScene("LevelTransition", LoadSceneMode.Single);
+        gameStats.SetLevel(gameStats.GetLevel() + 1);
+        _TransicionEscena.CambiarEscenaTransicion("Map");
     }
 }
