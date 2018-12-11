@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour {
+    TransicionEscena _TransicionEscena;
 
-	public void Play()
+    private void Start()
     {
-        SceneManager.LoadScene("Game_Alquimia", LoadSceneMode.Single);
+        _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
+    }
+
+    public void Play()
+    {
+        _TransicionEscena.CambiarEscenaTransicion("Game_Alquimia");
     }
 
 }

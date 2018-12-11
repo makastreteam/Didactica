@@ -18,9 +18,12 @@ public class calculadora : MonoBehaviour {
     int nivel = 0;
     int curacion;
     Stats gameStats;
+    TransicionEscena _TransicionEscena;
+
     private void Start()
     {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
+        _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         curacion = gameStats.GetPlayerHealth();
     }
 
@@ -34,6 +37,7 @@ public class calculadora : MonoBehaviour {
     {
             yield return new WaitForSeconds (2);
             Debug.Log("Funciona");
+        _TransicionEscena.CambiarEscenaTransicion("Map");
     }
 
     IEnumerator NextLevel()
