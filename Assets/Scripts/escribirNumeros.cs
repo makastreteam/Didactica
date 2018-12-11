@@ -11,7 +11,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar0()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "0";
             resultado.text = resultado.text + textoimprimir;
@@ -21,7 +21,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar1()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "1";
             resultado.text = resultado.text + textoimprimir;
@@ -31,7 +31,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar2()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "2";
             resultado.text = resultado.text + textoimprimir;
@@ -41,7 +41,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar3()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "3";
             resultado.text = resultado.text + textoimprimir;
@@ -51,7 +51,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar4()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "4";
             resultado.text = resultado.text + textoimprimir;
@@ -61,7 +61,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar5()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "5";
             resultado.text = resultado.text + textoimprimir;
@@ -71,7 +71,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar6()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "6";
             resultado.text = resultado.text + textoimprimir;
@@ -81,7 +81,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar7()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "7";
             resultado.text = resultado.text + textoimprimir;
@@ -91,7 +91,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar8()
     {
         interrogacion();
-        if (contador != 2)
+        if (contador != 3)
         {
             textoimprimir = "8";
             resultado.text = resultado.text + textoimprimir;
@@ -101,7 +101,7 @@ public class escribirNumeros : MonoBehaviour {
     public void colocar9()
     {
         interrogacion();
-        if (contador !=2 ) {
+        if (contador !=3) {
             textoimprimir = "9";
             resultado.text = resultado.text + textoimprimir;
             contador++;
