@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class MovePoints: MonoBehaviour{
 
@@ -14,10 +14,14 @@ public class MovePoints: MonoBehaviour{
     public float speed = 1;
     
     bool start = true;
+    GameObject levelManager;
+    TransicionEscena _TransicionEscena;
 
     private void Start()
     {
-        LM = LevelManager.GetLevelManager;
+        _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
+        LM = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+
         if (!LM.levelsLoaded)
         {
             for (int i = 0; i < Points.Length; i++)
@@ -29,7 +33,9 @@ public class MovePoints: MonoBehaviour{
             }
         }
         LM.levelsLoaded = true;
-        StartCoroutine(MoveToNextLevel());
+
+        this.transform.position = Points[LM.GetCurrentLevel()].transform.position;
+        //StartCoroutine(MoveToNextLevel());
     }
 
     public void Move(Transform target)
@@ -49,7 +55,6 @@ public class MovePoints: MonoBehaviour{
             }
             else
                 Debug.Log("No has superado el nivel");
-
         }
 
     }
@@ -59,7 +64,7 @@ public class MovePoints: MonoBehaviour{
         bool ended = false;
         walking = true;
         int start = LM.GetCurrentLevel(), end = LM.GetNextLevel();
-        Debug.Log("Start " + start + " End" + end);
+        //Debug.Log("Start " + start + " End" + end);
 
 
         transform.position = Points[start].transform.position;
@@ -80,7 +85,19 @@ public class MovePoints: MonoBehaviour{
             yield return null;
         }
         walking = false;
-        Debug.Log("FINAL -> Start " + start + " End" + end);
+        //Debug.Log("FINAL -> Start " + start + " End" + end);
+
+        cargarNivel();
     }
 
+    void cargarNivel()
+    {
+        StartCoroutine(Transicion());
+    }
+
+    IEnumerator Transicion()
+    {
+        yield return new WaitForSeconds(1);
+        _TransicionEscena.CambiarEscenaTransicion("Game");
+    }
 }

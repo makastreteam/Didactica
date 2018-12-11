@@ -5,18 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
+    TransicionEscena _TransicionEscena;
+
+    void Start()
+    {
+        _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
+    }
+
 	public void Play()
     {
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        _TransicionEscena.CambiarEscenaTransicion("Map");
     }
 
     public void Menu()
     {
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        _TransicionEscena.CambiarEscenaTransicion("Menu");
+        //SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 
     public void Quit()
     {
         Application.Quit();
     }
+
 }

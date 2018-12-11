@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pawn : MonoBehaviour {
+public class Pawn : MonoBehaviour
+{
 	public static Pawn instance;
-	void Awake(){
+
+	void Awake()
+    {
 		instance=this;
 	}
 }

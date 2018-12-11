@@ -13,8 +13,15 @@ public class LevelManager : MonoBehaviour {
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         GetLevelManager = this.gameObject.GetComponent<LevelManager>();
+
+        DontDestroyOnLoad(this);
+
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnLevelWasLoaded(int level)
@@ -27,11 +34,13 @@ public class LevelManager : MonoBehaviour {
 
     public void NextLevel()
     {
-        if(currentLevel < levels.Count-1)
+        /*if(currentLevel < levels.Count-1)
         {
             nextLevel = currentLevel + 1;
-        }
-        Debug.Log("Updating levels --> CURRENT: " + currentLevel + " NEXT: " + nextLevel);
+        }*/
+        //Debug.Log("Updating levels --> CURRENT: " + currentLevel + " NEXT: " + nextLevel);
+
+        nextLevel = currentLevel + 1;
     }
 
     void EndGame()
@@ -63,5 +72,15 @@ public class LevelManager : MonoBehaviour {
     public void SetNextLevel(int updated)
     {
         nextLevel = updated;
+    }
+
+    public int GetCLevel()
+    {
+        return currentLevel;
+    }
+
+    public int GetNLevel()
+    {
+        return nextLevel;
     }
 }

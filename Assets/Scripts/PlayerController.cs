@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     int indexPosition;
 
     bool turn;
-    int damage;
+    public int damage;
 
     Animator anim;
 
@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 
     void Start ()
     {
-        damage = 10;
         anim = Model.GetComponent<Animator>();
         enemyController = Enemy.GetComponent<EnemyController>();
     }
