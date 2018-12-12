@@ -14,6 +14,10 @@ public class calculadora : MonoBehaviour {
     public Image potion2;
     public Image potion3;
     public Image potion4;
+    public Image barraVida;
+    public GameObject botones;
+    public GameObject pergamino;
+    public GameObject formula;
 
     private string textoimprimir;
     string valor1;
@@ -22,16 +26,20 @@ public class calculadora : MonoBehaviour {
     double rta;
     int nivel = 0;
     int curacion;
+    int curacionTotal=-1;
+    float segundos;
     Stats gameStats;
     TransicionEscena _TransicionEscena;
     float tiempo;
     float alpha;
+    private bool rellenar = false;
 
     private void Start()
     {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         curacion = gameStats.GetPlayerHealth();
+        barraVida.color = new Color(0.282353f, 0.9254903f, 0.1490196f, 0);
 
         if (gameStats.GetLevel() >= 10)
         {
@@ -41,8 +49,8 @@ public class calculadora : MonoBehaviour {
         }
         else
         {
-            lblvalor1.text = Random.Range(0, 99).ToString();
-            lblvalor2.text = Random.Range(0, 99).ToString();
+            lblvalor1.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
+            lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
         }
 
     }
@@ -51,6 +59,7 @@ public class calculadora : MonoBehaviour {
     {
         tiempo += Time.deltaTime;
         
+
         if (nivel == 1 && tiempo < 2f)
         {
             potion4.color = new Color(1, 1, 1, alpha);
@@ -65,8 +74,32 @@ public class calculadora : MonoBehaviour {
         {
             potion2.color = new Color(1, 1, 1, alpha);
             alpha -= 0.75f * tiempo;
+        }else if (nivel == 4 && tiempo < 2f) {
+            pergamino.SetActive(false);
+            formula.SetActive(false);
+            botones.SetActive(false);
+            potion1.color = new Color(1, 1, 1, alpha);
+            potion2.color = new Color(1, 1, 1, alpha);
+            potion3.color = new Color(1, 1, 1, alpha);
+            potion4.color = new Color(1, 1, 1, alpha);
+            alpha -= 0.75f * tiempo;
+            barraVida.color = new Color(0.282353f, 0.9254903f, 0.1490196f, -alpha);
+            rellenar = true;
         }
 
+        if(rellenar==true && tiempo>2f)
+        {
+            if (tiempo > segundos)
+            {
+                if (curacionTotal >= 0 && gameStats.GetPlayerHealth() < 100)
+                {
+
+                  gameStats.SetPlayerHealth(curacion++);
+                    curacionTotal--;
+                }
+                segundos+=0.05f;
+            }
+        }
     }
 
     public void BorrarC()
@@ -77,7 +110,7 @@ public class calculadora : MonoBehaviour {
 
     IEnumerator MostrarVida()
     {
-            yield return new WaitForSeconds (2);
+            yield return new WaitForSeconds (5);
             Debug.Log("Funciona");
         _TransicionEscena.CambiarEscenaTransicion("Map");
     }
@@ -88,8 +121,8 @@ public class calculadora : MonoBehaviour {
         Debug.Log("Next Level");
         resultado.text = "?";
         int operador = Random.Range(0, 3);
-        lblvalor1.text = Random.Range(0, 99).ToString();
-        lblvalor2.text = Random.Range(0, 99).ToString();
+        lblvalor1.text = Random.Range(0, 11*(gameStats.GetLevel()+1)).ToString();
+        lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
 
         if (gameStats.GetLevel()>=10) {
             operacion.text = "x";
@@ -122,7 +155,12 @@ public class calculadora : MonoBehaviour {
         {
             StartCoroutine("MostrarVida");
             gameStats.SetPlayerHealth(curacion);
-
+            nivel = 4;
+            potion4.enabled = false;
+            potion3.enabled = false;
+            potion2.enabled = false;
+            tiempo = 0;
+            alpha = 1.0f;
         }
     }
 
@@ -134,8 +172,12 @@ public class calculadora : MonoBehaviour {
         if (resultado.text != "?")
         {
             if (resultado.text == operaciones(valor1, valor2)) {
+                if (nivel == 0)
+                {
+                    curacionTotal = 0;
+                }
                 nivel += 1;
-                curacion += 25;
+                curacionTotal += 25;
                 Debug.Log("vida++");
 
                     StartCoroutine("NextLevel");
@@ -146,6 +188,33 @@ public class calculadora : MonoBehaviour {
             else{
                 Debug.Log("Trabaja");
                 StartCoroutine("MostrarVida");
+                if (nivel == 0)
+                {
+                    potion3.enabled = false ;
+                    potion2.enabled = false;
+                    potion1.enabled = false;
+                    nivel = 4;
+                    tiempo = 0;
+                    alpha = 1.0f;
+                }
+                else if (nivel == 1)
+                {
+                    potion4.enabled = false;
+                    potion2.enabled = false;
+                    potion1.enabled = false;
+                    nivel = 4;
+                    tiempo = 0;
+                    alpha = 1.0f;
+                }
+                else if (nivel == 2)
+                {
+                    potion4.enabled = false;
+                    potion3.enabled = false;
+                    potion1.enabled = false;
+                    nivel = 4;
+                    tiempo = 0;
+                    alpha = 1.0f;
+                }
             }
         }
     }
