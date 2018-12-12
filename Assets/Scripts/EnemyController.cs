@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject[] Position;
     public GameObject Player;
     public GameObject AttackImage;
-    public GameObject Model;
+    GameObject Model;
 
     PlayerController playerController;
     Stats gameStats;
@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour {
     int takeDamage;
 
     Animator anim;
+    public GameObject[] enemyModels = new GameObject[13];
+    LevelManager levelManager;
 
     void Awake()
     {
@@ -32,8 +34,12 @@ public class EnemyController : MonoBehaviour {
 
 	void Start ()
     {
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+
+        enemyModels[levelManager.GetCLevel()-1].SetActive(true);
+
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
-        anim = Model.GetComponent<Animator>();
+        anim = enemyModels[levelManager.GetCLevel()-1].GetComponent<Animator>();
 
         health = 100;
         damage = 34;

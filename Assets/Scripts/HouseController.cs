@@ -19,6 +19,7 @@ public class HouseController : MonoBehaviour {
     public GameObject Enemy;
 
     public Sprite[] enemyBars = new Sprite[13];
+    public GameObject[] enemyModels = new GameObject[13];
     public GameObject enemyBar;
 
     PlayerController playerController;
@@ -27,14 +28,17 @@ public class HouseController : MonoBehaviour {
     Stats gameStats;
     TransicionEscena _TransicionEscena;
 
+    LevelManager levelManager;
+
     public float TimeLeft;
 
     void Start()
     {
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
-        enemyBar.GetComponent<Image>().sprite = enemyBars[gameStats.GetLevel()];
+        enemyBar.GetComponent<Image>().sprite = enemyBars[levelManager.GetCLevel() - 1];
 
         playerController = Player.GetComponent<PlayerController>();
         enemyController = Enemy.GetComponent<EnemyController>();
