@@ -6,6 +6,23 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour {
 
     TransicionEscena _TransicionEscena;
+    GameObject gameStats;
+    GameObject levelManager;
+
+    void Update()
+    {
+        if(SceneManager.GetActiveScene().name == "Menu")
+        {
+            if(GameObject.Find("LevelManager") != null && GameObject.Find("Stats") != null)
+            {
+                levelManager = GameObject.FindGameObjectWithTag("LevelManager");
+                gameStats = GameObject.FindGameObjectWithTag("Stats");
+
+                Destroy(levelManager);
+                Destroy(gameStats);
+            } 
+        }
+    }
 
     void Start()
     {

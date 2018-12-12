@@ -53,7 +53,7 @@ public class HouseController : MonoBehaviour {
         if(gameStats.GetPlayerHealth() <= 0)
         {
             //_TransicionEscena.CambiarEscenaTransicion("Map");
-            SceneManager.LoadScene("Score", LoadSceneMode.Single);
+            StartCoroutine(PlayerDeathAnim());
         }
 
         if(enemyController.GetHealth() <= 0 && cambioEscena == false)
@@ -91,8 +91,15 @@ public class HouseController : MonoBehaviour {
     IEnumerator EnemyDeathAnim()
     {
         yield return new WaitForSeconds(3f);
-        LevelManager.GetLevelManager.NextLevel();
+        //LevelManager.GetLevelManager.NextLevel();
+        levelManager.SetNextLevel(levelManager.GetCLevel() + 1);
         gameStats.SetLevel(gameStats.GetLevel() + 1);
         _TransicionEscena.CambiarEscenaTransicion("Map");
+    }
+
+    IEnumerator PlayerDeathAnim()
+    {
+        yield return new WaitForSeconds(3f);
+        _TransicionEscena.CambiarEscenaTransicion("Menu");
     }
 }
