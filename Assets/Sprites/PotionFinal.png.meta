@@ -126,9 +126,9 @@ TextureImporter:
       name: PotionFinal_1
       rect:
         serializedVersion: 2
-        x: 981
+        x: 999
         y: 819
-        width: 375
+        width: 341
         height: 439
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

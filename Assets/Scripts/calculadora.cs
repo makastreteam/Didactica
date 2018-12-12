@@ -13,6 +13,7 @@ public class calculadora : MonoBehaviour {
     public Image potion1;
     public Image potion2;
     public Image potion3;
+    public Image potion4;
 
     private string textoimprimir;
     string valor1;
@@ -23,16 +24,14 @@ public class calculadora : MonoBehaviour {
     int curacion;
     Stats gameStats;
     TransicionEscena _TransicionEscena;
+    float tiempo;
+    float alpha;
 
     private void Start()
     {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         curacion = gameStats.GetPlayerHealth();
-
-        potion1 = GetComponent<Image>();
-        potion2 = GetComponent<Image>();
-        potion3 = GetComponent<Image>();
 
         if (gameStats.GetLevel() >= 10)
         {
@@ -44,6 +43,28 @@ public class calculadora : MonoBehaviour {
         {
             lblvalor1.text = Random.Range(0, 99).ToString();
             lblvalor2.text = Random.Range(0, 99).ToString();
+        }
+
+    }
+
+    private void Update()
+    {
+        tiempo += Time.deltaTime;
+        
+        if (nivel == 1 && tiempo < 2f)
+        {
+            potion4.color = new Color(1, 1, 1, alpha);
+            alpha -= 0.75f * tiempo;
+        }
+        else if ((nivel == 2 && tiempo < 2f))
+        {
+            potion3.color = new Color(1, 1, 1, alpha);
+            alpha -= 0.75f * tiempo;
+        }
+        else if ((nivel == 3 && tiempo < 2f))
+        {
+            potion2.color = new Color(1, 1, 1, alpha);
+            alpha -= 0.75f * tiempo;
         }
 
     }
@@ -97,6 +118,12 @@ public class calculadora : MonoBehaviour {
             }
         }
 
+        if (nivel == 3)
+        {
+            StartCoroutine("MostrarVida");
+            gameStats.SetPlayerHealth(curacion);
+
+        }
     }
 
     public void igual()
@@ -110,25 +137,11 @@ public class calculadora : MonoBehaviour {
                 nivel += 1;
                 curacion += 25;
                 Debug.Log("vida++");
-                if (nivel == 3)
-                {
-                    StartCoroutine("MostrarVida");
-                    gameStats.SetPlayerHealth(curacion);
-                }
-                else
-                {
-                    StartCoroutine("NextLevel");
-                    if (nivel == 1)
-                    {
-                        potion1.color = new Color(1, 1, 1, 0);
-                    }
-                    else
-                    {
-                       // potion1.color = Color.white;
-                    }
-                    
 
-                }
+                    StartCoroutine("NextLevel");
+                    tiempo = 0;
+                    alpha = 1.0f;
+                
             }
             else{
                 Debug.Log("Trabaja");
