@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
     int takeDamage;
 
     Animator anim;
-    public GameObject[] enemyModels = new GameObject[13];
+    public GameObject enemyModel;
     LevelManager levelManager;
 
     void Awake()
@@ -36,10 +36,8 @@ public class EnemyController : MonoBehaviour {
     {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 
-        enemyModels[levelManager.GetCLevel()-1].SetActive(true);
-
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
-        anim = enemyModels[levelManager.GetCLevel()-1].GetComponent<Animator>();
+        anim = enemyModel.GetComponent<Animator>();
 
         health = 100;
         damage = 34;
