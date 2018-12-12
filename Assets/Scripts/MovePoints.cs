@@ -16,6 +16,8 @@ public class MovePoints: MonoBehaviour{
     bool start = true;
     GameObject levelManager;
     TransicionEscena _TransicionEscena;
+    string[] escenasNivel = { "Level01", "Level02", "Level03", "Level04", "Level05", "Level06", "Level07",
+                              "Level08", "Level09", "Level10", "Level11", "Level12", "Level13"};
 
     private void Start()
     {
@@ -98,6 +100,7 @@ public class MovePoints: MonoBehaviour{
     IEnumerator Transicion()
     {
         yield return new WaitForSeconds(1);
-        _TransicionEscena.CambiarEscenaTransicion("Game");
+        //_TransicionEscena.CambiarEscenaTransicion("Game");
+        _TransicionEscena.CambiarEscenaTransicion(escenasNivel[LM.GetCLevel()-1]);
     }
 }
