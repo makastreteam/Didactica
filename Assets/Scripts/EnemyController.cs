@@ -154,6 +154,7 @@ public class EnemyController : MonoBehaviour {
 
         AttackImage.SetActive(false);
         gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
+        playerController.TakeDamage();
         playerController.SetTurn(true);
 
     }

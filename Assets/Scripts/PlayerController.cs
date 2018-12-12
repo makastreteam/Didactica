@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public int damage;
 
     Animator anim;
+    Stats gameStats;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     {
         anim = Model.GetComponent<Animator>();
         enemyController = Enemy.GetComponent<EnemyController>();
+        gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
     }
 
     public void MovePosition(int num)
@@ -151,5 +153,15 @@ public class PlayerController : MonoBehaviour {
     public bool GetTurn()
     {
         return turn;
+    }
+
+    public void TakeDamage()
+    {
+        anim.SetTrigger("getHit");
+
+        if (gameStats.GetPlayerHealth() <= 0)
+        {
+            anim.SetTrigger("death");
+        }
     }
 }
