@@ -129,14 +129,7 @@ public class EnemyController : MonoBehaviour {
 
     void attack()
     {
-        if(indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
-        {
-            StartCoroutine(Attack());      
-        }
-        else
-        {
-            playerController.SetTurn(true);
-        }
+        StartCoroutine(Attack());
     }
 
     //Ataque Dragon
@@ -152,11 +145,18 @@ public class EnemyController : MonoBehaviour {
             yield return null;
         }
 
-        AttackImage.SetActive(false);
-        gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
-        playerController.TakeDamage();
-        playerController.SetTurn(true);
+        Debug.Log("ATACO");
 
+        if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
+        {
+            Debug.Log("ATACO Y QUITO VIDA");
+
+            gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
+            playerController.TakeDamage();
+        }
+
+        AttackImage.SetActive(false);
+        playerController.SetTurn(true);
     }
 
     //Movimiento suave
