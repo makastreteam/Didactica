@@ -1740,6 +1740,9 @@ MonoBehaviour:
   lblvalor1: {fileID: 144429929}
   lblvalor2: {fileID: 1582718881}
   operacion: {fileID: 403934716}
+  potion1: {fileID: 1443417957}
+  potion2: {fileID: 1831415697}
+  potion3: {fileID: 584505330}
 --- !u!114 &641236952
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,10 @@ public class calculadora : MonoBehaviour {
     public Text lblvalor1;
     public Text lblvalor2;
     public Text operacion;
+    public Image potion1;
+    public Image potion2;
+    public Image potion3;
+
     private string textoimprimir;
     string valor1;
     string valor2;
@@ -25,6 +29,23 @@ public class calculadora : MonoBehaviour {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         curacion = gameStats.GetPlayerHealth();
+
+        potion1 = GetComponent<Image>();
+        potion2 = GetComponent<Image>();
+        potion3 = GetComponent<Image>();
+
+        if (gameStats.GetLevel() >= 10)
+        {
+            operacion.text = "x";
+            lblvalor1.text = Random.Range(0, 11).ToString();
+            lblvalor2.text = Random.Range(0, 11).ToString();
+        }
+        else
+        {
+            lblvalor1.text = Random.Range(0, 99).ToString();
+            lblvalor2.text = Random.Range(0, 99).ToString();
+        }
+
     }
 
     public void BorrarC()
@@ -43,7 +64,39 @@ public class calculadora : MonoBehaviour {
     IEnumerator NextLevel()
     {
         yield return new WaitForSeconds(2);
-        Debug.Log("Funciona");
+        Debug.Log("Next Level");
+        resultado.text = "?";
+        int operador = Random.Range(0, 3);
+        lblvalor1.text = Random.Range(0, 99).ToString();
+        lblvalor2.text = Random.Range(0, 99).ToString();
+
+        if (gameStats.GetLevel()>=10) {
+            operacion.text = "x";
+            lblvalor1.text = Random.Range(0, 11).ToString();
+            lblvalor2.text = Random.Range(0, 11).ToString();
+        }
+        else
+        {
+            if (int.Parse(lblvalor1.text) < int.Parse(lblvalor2.text))
+            {
+                operador = Random.Range(0, 2);
+            }
+            if (0 == operador)
+            {
+                operacion.text = "+";
+            }
+            else if (1 == operador)
+            {
+                operacion.text = "x";
+                lblvalor1.text = Random.Range(0, 11).ToString();
+                lblvalor2.text = Random.Range(0, 11).ToString();
+            }
+            else if (2 == operador)
+            {
+                operacion.text = "-";
+            }
+        }
+
     }
 
     public void igual()
@@ -65,8 +118,17 @@ public class calculadora : MonoBehaviour {
                 else
                 {
                     StartCoroutine("NextLevel");
+                    if (nivel == 1)
+                    {
+                        potion1.color = new Color(1, 1, 1, 0);
+                    }
+                    else
+                    {
+                       // potion1.color = Color.white;
+                    }
+                    
+
                 }
-                
             }
             else{
                 Debug.Log("Trabaja");

@@ -31,9 +31,11 @@ public class HouseController : MonoBehaviour {
     LevelManager levelManager;
 
     public float TimeLeft;
+    bool cambioEscena;
 
     void Start()
     {
+        cambioEscena = false;
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 
@@ -54,8 +56,9 @@ public class HouseController : MonoBehaviour {
             SceneManager.LoadScene("Score", LoadSceneMode.Single);
         }
 
-        if(enemyController.GetHealth() <= 0)
+        if(enemyController.GetHealth() <= 0 && cambioEscena == false)
         {
+            cambioEscena = true;
             StartCoroutine(EnemyDeathAnim());
         }
 
