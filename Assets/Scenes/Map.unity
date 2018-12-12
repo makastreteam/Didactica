@@ -820,9 +820,27 @@ Prefab:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 641236946}
+    - target: {fileID: 114325721888009048, guid: 70dc1a1e527f3bf4fa385ef70c9da401,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a931aea4c2c14a344a7400d60ba722d0,
+        type: 3}
+    - target: {fileID: 114754546012041884, guid: 70dc1a1e527f3bf4fa385ef70c9da401,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 18076865147c3de4781ded3a0cfef706,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70dc1a1e527f3bf4fa385ef70c9da401, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &182018496 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114754546012041884, guid: 70dc1a1e527f3bf4fa385ef70c9da401,
+    type: 2}
+  m_PrefabInternal: {fileID: 182018495}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &187723893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,6 +1405,21 @@ MonoBehaviour:
   - {fileID: 432836995}
   - {fileID: 1216451253}
   speed: 2
+  imgConsejos:
+  - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
+  - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
+  - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
+  - {fileID: 21300000, guid: 21254f53f48d8e646a39e61fa22fcbe3, type: 3}
+  - {fileID: 21300000, guid: 497a46e6653faa0478843b167a9d48ae, type: 3}
+  - {fileID: 21300000, guid: 892eaee1f4047474eac4257560391cc7, type: 3}
+  - {fileID: 21300000, guid: e9d0cb68ee2db5740ae8d502405cdf08, type: 3}
+  - {fileID: 21300000, guid: ac8e96d023eb7514386c73c691f0d748, type: 3}
+  - {fileID: 21300000, guid: ff40b2cc1c0e4df41ab68bd2c826ac41, type: 3}
+  - {fileID: 21300000, guid: 497a46e6653faa0478843b167a9d48ae, type: 3}
+  - {fileID: 21300000, guid: e9d0cb68ee2db5740ae8d502405cdf08, type: 3}
+  - {fileID: 21300000, guid: ac8e96d023eb7514386c73c691f0d748, type: 3}
+  - {fileID: 21300000, guid: 21254f53f48d8e646a39e61fa22fcbe3, type: 3}
+  derecha: {fileID: 182018496}
 --- !u!1 &393263699
 GameObject:
   m_ObjectHideFlags: 0
@@ -8329,6 +8362,20 @@ MonoBehaviour:
   Player: {fileID: 0}
   Enemy: {fileID: 0}
   enemyBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyModels:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

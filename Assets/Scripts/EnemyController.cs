@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject enemyModel;
     LevelManager levelManager;
 
-    public enum AtaqueEnum { Area2, Area3, Area4, Pares, Impares, Negativos, Positivos };
+    public enum AtaqueEnum { Area2, Area3, Area4, Pares, Impares, Negativos, Positivos, TodosMenosCero, Primos };
     public AtaqueEnum TipoAtaque;
     bool[] casillaAtaque = new bool[17];
 
@@ -152,7 +152,13 @@ public class EnemyController : MonoBehaviour {
         {
             if (casillaAtaque[i] == true)
             {
-                Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, -2, 0), Quaternion.identity);
+                if(i == playerController.GetIndexPosition())
+                {
+                    gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
+                    playerController.TakeDamage();
+                }
+
+                Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, 0.45f, 0), Quaternion.identity);
             }
         }
 
@@ -162,11 +168,11 @@ public class EnemyController : MonoBehaviour {
             yield return null;
         }
 
-        if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
+        /*if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
         {
             gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
             playerController.TakeDamage();
-        }
+        }*/
 
         //AttackImage.SetActive(false);
         playerController.SetTurn(true);
@@ -267,8 +273,6 @@ public class EnemyController : MonoBehaviour {
             {
                 if(indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
                 {
-                    Debug.Log("INDEXPOSITION " + indexPosition);
-                    Debug.Log("MIERDA " + (indexPosition + i));
                     casillaAtaque[indexPosition + i] = true;
                 }
             }
@@ -276,32 +280,74 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Area3)
         {
-
+            for (int i = -3; i < 4; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.Area4)
         {
-
+            for (int i = -4; i < 5; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.Impares)
         {
-
+            for (int i = 1; i < 16; i+=2)
+            {
+                casillaAtaque[i] = true;
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.Pares)
         {
-
+            for (int i = 0; i < 16; i += 2)
+            {
+                casillaAtaque[i] = true;
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.Negativos)
         {
-
+            for (int i = 0; i <= 7; i ++)
+            {
+                casillaAtaque[i] = true;
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.Positivos)
         {
+            for (int i = 9; i < 16; i++)
+            {
+                casillaAtaque[i] = true;
+            }
+        }
 
+        if (TipoAtaque == AtaqueEnum.TodosMenosCero)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                if(i != 8)
+                {
+                    casillaAtaque[i] = true;
+                }
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Primos)
+        {
+            casillaAtaque[10] = true;
+            casillaAtaque[13] = true;
+            casillaAtaque[15] = true;
         }
     }
 

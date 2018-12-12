@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MovePoints: MonoBehaviour{
 
@@ -18,6 +19,9 @@ public class MovePoints: MonoBehaviour{
     TransicionEscena _TransicionEscena;
     string[] escenasNivel = { "Level01", "Level02", "Level03", "Level04", "Level05", "Level06", "Level07",
                               "Level08", "Level09", "Level10", "Level11", "Level12", "Level13"};
+
+    public Sprite[] imgConsejos;
+    public Image derecha;
 
     private void Start()
     {
@@ -38,6 +42,9 @@ public class MovePoints: MonoBehaviour{
 
         this.transform.position = Points[LM.GetCurrentLevel()].transform.position;
         //StartCoroutine(MoveToNextLevel());
+        Debug.Log("asdasd " + LM.GetCLevel());
+        derecha.sprite = imgConsejos[LM.GetCLevel()];
+
     }
 
     public void Move(Transform target)
