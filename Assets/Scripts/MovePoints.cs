@@ -18,7 +18,7 @@ public class MovePoints: MonoBehaviour{
     GameObject levelManager;
     TransicionEscena _TransicionEscena;
     string[] escenasNivel = { "Level01", "Level02", "Level03", "Level04", "Level05", "Level06", "Level07",
-                              "Level08", "Level09", "Level10", "Level11", "Level12", "Level13"};
+                              "Level08", "Level09", "Level10", "Level11", "Level12"};
 
     public Sprite[] imgConsejos;
     public Image derecha;

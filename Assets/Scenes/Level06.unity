@@ -291,7 +291,7 @@ MonoBehaviour:
   Player: {fileID: 958529249}
   AttackImage: {fileID: 0}
   enemyModel: {fileID: 423350549}
-  TipoAtaque: 7
+  TipoAtaque: 5
   attackPrefab: {fileID: 1631874093754636, guid: 826d6e0adc5699342a3ca2171a72f657,
     type: 2}
 --- !u!1 &11819999

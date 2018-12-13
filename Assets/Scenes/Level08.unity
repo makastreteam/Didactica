@@ -291,7 +291,7 @@ MonoBehaviour:
   Player: {fileID: 958529249}
   AttackImage: {fileID: 0}
   enemyModel: {fileID: 1871552980}
-  TipoAtaque: 8
+  TipoAtaque: 7
   attackPrefab: {fileID: 1631874093754636, guid: 826d6e0adc5699342a3ca2171a72f657,
     type: 2}
 --- !u!1 &11819999
@@ -6363,6 +6363,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 9535810, guid: 6f155470f82570841b824134cb620649, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 81a447375ef9709428f70c34866fed81, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f155470f82570841b824134cb620649, type: 2}
   m_IsPrefabAsset: 0

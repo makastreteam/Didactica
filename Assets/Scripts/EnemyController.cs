@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour {
     public GameObject enemyModel;
     LevelManager levelManager;
 
-    public enum AtaqueEnum { Area2, Area3, Area4, Pares, Impares, Negativos, Positivos, TodosMenosCero, Primos };
+    public enum AtaqueEnum { Area2, Area3, Area4, Pares, Impares, Area5, Negativos, Positivos, Area6, TodosMenosCero, Primos, NumeroPerfecto };
     public AtaqueEnum TipoAtaque;
     bool[] casillaAtaque = new bool[17];
 
@@ -310,9 +310,20 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Pares)
         {
-            for (int i = 0; i < 16; i += 2)
+            for (int i = 0; i <= 16; i += 2)
             {
                 casillaAtaque[i] = true;
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Area5)
+        {
+            for (int i = -5; i < 6; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
             }
         }
 
@@ -326,15 +337,26 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Positivos)
         {
-            for (int i = 9; i < 16; i++)
+            for (int i = 9; i <= 16; i++)
             {
                 casillaAtaque[i] = true;
             }
         }
 
+        if (TipoAtaque == AtaqueEnum.Area6)
+        {
+            for (int i = -6; i < 7; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
+        }
+
         if (TipoAtaque == AtaqueEnum.TodosMenosCero)
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i <= 16; i++)
             {
                 if(i != 8)
                 {
@@ -348,6 +370,11 @@ public class EnemyController : MonoBehaviour {
             casillaAtaque[10] = true;
             casillaAtaque[13] = true;
             casillaAtaque[15] = true;
+        }
+
+        if (TipoAtaque == AtaqueEnum.NumeroPerfecto)
+        {
+            casillaAtaque[14] = true;
         }
     }
 
