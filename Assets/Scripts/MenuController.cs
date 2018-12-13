@@ -31,6 +31,7 @@ public class MenuController : MonoBehaviour {
 
 	public void Play()
     {
+        Debug.Log("Pulsado");
         _TransicionEscena.CambiarEscenaTransicion("Map");
     }
 

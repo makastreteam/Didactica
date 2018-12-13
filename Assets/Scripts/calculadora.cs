@@ -35,6 +35,7 @@ public class calculadora : MonoBehaviour {
     float alpha;
     private bool rellenar = false;
     private AudioSource burbu;
+    public AudioSource roto;
 
     private void Start()
     {
@@ -198,6 +199,7 @@ public class calculadora : MonoBehaviour {
             }
             else{
                 Debug.Log("Trabaja");
+                roto.Play();
                 StartCoroutine("MostrarVida");
                 if (nivel == 0)
                 {

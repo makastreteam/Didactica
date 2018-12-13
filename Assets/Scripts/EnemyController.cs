@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
     public GameObject[] Position;
     public GameObject Player;
@@ -17,8 +18,8 @@ public class EnemyController : MonoBehaviour {
 
     bool turn;
     int health;
-    int damage;
-    int takeDamage;
+    public int damage;
+    public int takeDamage;
 
     Animator anim;
     public GameObject enemyModel;
@@ -38,9 +39,9 @@ public class EnemyController : MonoBehaviour {
         turn = false;
     }
 
-	void Start ()
+    void Start()
     {
-        for(int i = 0; i < 16; i++)
+        for (int i = 0; i <= 16; i++)
         {
             casillaAtaque[i] = false;
         }
@@ -51,12 +52,12 @@ public class EnemyController : MonoBehaviour {
         anim = enemyModel.GetComponent<Animator>();
 
         health = 100;
-        damage = 34;
-        takeDamage = 5;
+       // damage = 34;
+        //takeDamage = 5;
         playerController = Player.GetComponent<PlayerController>();
     }
-	
-	void Update ()
+
+    void Update()
     {
         if (turn == true && health > 0)
         {
@@ -65,11 +66,11 @@ public class EnemyController : MonoBehaviour {
             MovePosition();
         }
 
-        if(health <= 0)
+        if (health <= 0)
         {
             anim.SetTrigger("death");
         }
-	}
+    }
 
     //Se mueve a la nueva posicion. Recorre el vector de lado a lado
     void MovePosition()
@@ -148,11 +149,11 @@ public class EnemyController : MonoBehaviour {
         float t = 0.0f;
         float duration = 2f;
 
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i <= 16; i++)
         {
             if (casillaAtaque[i] == true)
             {
-                if(i == playerController.GetIndexPosition())
+                if (i == playerController.GetIndexPosition())
                 {
                     gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
                     playerController.TakeDamage();
@@ -195,7 +196,7 @@ public class EnemyController : MonoBehaviour {
             yield return null;
         }
 
-        if(takeDamage <= 1)
+        if (takeDamage <= 1)
         {
             attack();
         }
@@ -262,16 +263,16 @@ public class EnemyController : MonoBehaviour {
     //Tipo de ataque
     void TipoDeAataque()
     {
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i <= 16; i++)
         {
             casillaAtaque[i] = false;
         }
 
         if (TipoAtaque == AtaqueEnum.Area2)
         {
-            for(int i = -2; i < 3; i++)
+            for (int i = -2; i < 3; i++)
             {
-                if(indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
                 {
                     casillaAtaque[indexPosition + i] = true;
                 }
@@ -302,7 +303,7 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Impares)
         {
-            for (int i = 1; i < 16; i+=2)
+            for (int i = 1; i < 16; i += 2)
             {
                 casillaAtaque[i] = true;
             }
@@ -310,9 +311,12 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Pares)
         {
-            for (int i = 0; i <= 16; i += 2)
+            for (int i = 0; i <= 16; i++)
             {
-                casillaAtaque[i] = true;
+                if (i % 2 == 0)
+                {
+                    casillaAtaque[i] = true;
+                }
             }
         }
 
@@ -329,7 +333,7 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Negativos)
         {
-            for (int i = 0; i <= 7; i ++)
+            for (int i = 0; i <= 7; i++)
             {
                 casillaAtaque[i] = true;
             }
@@ -358,7 +362,7 @@ public class EnemyController : MonoBehaviour {
         {
             for (int i = 0; i <= 16; i++)
             {
-                if(i != 8)
+                if (i != 8)
                 {
                     casillaAtaque[i] = true;
                 }
@@ -367,14 +371,25 @@ public class EnemyController : MonoBehaviour {
 
         if (TipoAtaque == AtaqueEnum.Primos)
         {
-            casillaAtaque[10] = true;
-            casillaAtaque[13] = true;
-            casillaAtaque[15] = true;
+
+            for (int i = 0; i <= 16; i++)
+            {
+                if (i != 10 && i != 11 && i != 13 && i != 15)
+                {
+                    casillaAtaque[i] = true;
+                }
+            }
         }
 
         if (TipoAtaque == AtaqueEnum.NumeroPerfecto)
         {
-            casillaAtaque[14] = true;
+            for (int i = 0; i <= 16; i++)
+            {
+                if (i != 14)
+                {
+                    casillaAtaque[i] = true;
+                }
+            }
         }
     }
 
@@ -403,7 +418,7 @@ public class EnemyController : MonoBehaviour {
         anim.SetTrigger("getHit");
         this.health -= amount;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             anim.SetTrigger("death");
         }
