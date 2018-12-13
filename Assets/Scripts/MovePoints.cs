@@ -13,7 +13,8 @@ public class MovePoints: MonoBehaviour{
     bool walking = false;
     [Range(0.5f, 10)]
     public float speed = 1;
-    
+    Stats gameStats;
+
     bool start = true;
     GameObject levelManager;
     TransicionEscena _TransicionEscena;
@@ -27,6 +28,7 @@ public class MovePoints: MonoBehaviour{
     {
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         LM = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
 
         if (!LM.levelsLoaded)
         {
@@ -109,5 +111,6 @@ public class MovePoints: MonoBehaviour{
         yield return new WaitForSeconds(1);
         //_TransicionEscena.CambiarEscenaTransicion("Game");
         _TransicionEscena.CambiarEscenaTransicion(escenasNivel[LM.GetCLevel()-1]);
+        gameStats.Curado = false;
     }
 }

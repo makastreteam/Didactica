@@ -7,8 +7,22 @@ public class Stats : MonoBehaviour {
     int level;
     int points;
     int playerHealth;
+    bool curado;
 
-	void Awake()
+    public bool Curado
+    {
+        get
+        {
+            return curado;
+        }
+
+        set
+        {
+            curado = value;
+        }
+    }
+
+    void Awake()
     {
         DontDestroyOnLoad(this);
 

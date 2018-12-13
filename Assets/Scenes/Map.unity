@@ -1800,16 +1800,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
   - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
   - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
-  - {fileID: 21300000, guid: 21254f53f48d8e646a39e61fa22fcbe3, type: 3}
   - {fileID: 21300000, guid: 497a46e6653faa0478843b167a9d48ae, type: 3}
+  - {fileID: 21300000, guid: ac8e96d023eb7514386c73c691f0d748, type: 3}
+  - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
+  - {fileID: 21300000, guid: 21254f53f48d8e646a39e61fa22fcbe3, type: 3}
+  - {fileID: 21300000, guid: e9d0cb68ee2db5740ae8d502405cdf08, type: 3}
+  - {fileID: 21300000, guid: 7cf1fc29d24a5754cba33c7b8fb26116, type: 3}
   - {fileID: 21300000, guid: 892eaee1f4047474eac4257560391cc7, type: 3}
-  - {fileID: 21300000, guid: e9d0cb68ee2db5740ae8d502405cdf08, type: 3}
-  - {fileID: 21300000, guid: ac8e96d023eb7514386c73c691f0d748, type: 3}
   - {fileID: 21300000, guid: ff40b2cc1c0e4df41ab68bd2c826ac41, type: 3}
-  - {fileID: 21300000, guid: 497a46e6653faa0478843b167a9d48ae, type: 3}
-  - {fileID: 21300000, guid: e9d0cb68ee2db5740ae8d502405cdf08, type: 3}
-  - {fileID: 21300000, guid: ac8e96d023eb7514386c73c691f0d748, type: 3}
-  - {fileID: 21300000, guid: 21254f53f48d8e646a39e61fa22fcbe3, type: 3}
+  - {fileID: 21300000, guid: aaa3ddc0030ff964daa9f92d13ec2dc6, type: 3}
   derecha: {fileID: 182018496}
 --- !u!1 &393263699
 GameObject:
@@ -3589,6 +3588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c7d93b32b66be4095414c0c3c49fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curar: {fileID: 2038818046}
+  nivel: 0
 --- !u!1 &654328038
 GameObject:
   m_ObjectHideFlags: 0
@@ -9275,6 +9276,11 @@ Prefab:
 --- !u!224 &2038818045 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2038818044}
+--- !u!1 &2038818046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1968050013279578, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
     type: 2}
   m_PrefabInternal: {fileID: 2038818044}
 --- !u!1 &2077966939
