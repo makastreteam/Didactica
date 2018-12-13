@@ -314,7 +314,7 @@ Prefab:
     - target: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -408,7 +408,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c16d1546b5c71d458b150b7817cab4e,
+      objectReference: {fileID: 21300000, guid: a9b23e518ee4e104f99e28d06f1bc399,
         type: 3}
     - target: {fileID: 114223039041186524, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -8232,12 +8232,12 @@ Prefab:
     - target: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224063471477789634, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -8280,7 +8280,9 @@ Prefab:
     - target: {fileID: 114613578014635878, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
       propertyPath: m_Text
-      value: Curarse
+      value: '
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 114613578014635878, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
         type: 2}
@@ -8326,6 +8328,17 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114223039041186524, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d73068d2967971242ba51b9f873b16ed,
+        type: 3}
+    - target: {fileID: 114223039041186524, guid: 1e71a80abef1f8f48bbb32af34d5e6b8,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e71a80abef1f8f48bbb32af34d5e6b8, type: 2}
