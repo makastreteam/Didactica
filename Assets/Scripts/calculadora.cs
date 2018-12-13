@@ -14,10 +14,11 @@ public class calculadora : MonoBehaviour {
     public Image potion2;
     public Image potion3;
     public Image potion4;
-    public Image barraVida;
+    public GameObject barraVida;
     public GameObject botones;
     public GameObject pergamino;
     public GameObject formula;
+    public Slider barraVidaSlider;
 
     private string textoimprimir;
     string valor1;
@@ -33,13 +34,15 @@ public class calculadora : MonoBehaviour {
     float tiempo;
     float alpha;
     private bool rellenar = false;
+    private AudioSource burbu;
 
     private void Start()
     {
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
         _TransicionEscena = GameObject.FindGameObjectWithTag("TransicionEscena").GetComponent<TransicionEscena>();
         curacion = gameStats.GetPlayerHealth();
-        barraVida.color = new Color(0.282353f, 0.9254903f, 0.1490196f, 0);
+        barraVida.SetActive(false);
+        burbu = GetComponent<AudioSource>();
 
         if (gameStats.GetLevel() >= 10)
         {
@@ -83,18 +86,19 @@ public class calculadora : MonoBehaviour {
             potion3.color = new Color(1, 1, 1, alpha);
             potion4.color = new Color(1, 1, 1, alpha);
             alpha -= 0.75f * tiempo;
-            barraVida.color = new Color(0.282353f, 0.9254903f, 0.1490196f, -alpha);
             rellenar = true;
         }
 
         if(rellenar==true && tiempo>2f)
         {
+            barraVida.SetActive(true);
             if (tiempo > segundos)
             {
                 if (curacionTotal >= 0 && gameStats.GetPlayerHealth() < 100)
                 {
 
                   gameStats.SetPlayerHealth(curacion++);
+                    barraVidaSlider.value =gameStats.GetPlayerHealth();
                     curacionTotal--;
                 }
                 segundos+=0.05f;
@@ -183,6 +187,7 @@ public class calculadora : MonoBehaviour {
                     StartCoroutine("NextLevel");
                     tiempo = 0;
                     alpha = 1.0f;
+                burbu.Play();
                 
             }
             else{
