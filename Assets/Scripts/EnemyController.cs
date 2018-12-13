@@ -24,6 +24,12 @@ public class EnemyController : MonoBehaviour {
     public GameObject enemyModel;
     LevelManager levelManager;
 
+    public enum AtaqueEnum { Area2, Area3, Area4, Pares, Impares, Negativos, Positivos, TodosMenosCero, Primos };
+    public AtaqueEnum TipoAtaque;
+    bool[] casillaAtaque = new bool[17];
+
+    public GameObject attackPrefab;
+
     void Awake()
     {
         this.transform.position = new Vector3(Position[Position.Length - 1].transform.position.x, this.gameObject.transform.position.y, 0);
@@ -34,6 +40,11 @@ public class EnemyController : MonoBehaviour {
 
 	void Start ()
     {
+        for(int i = 0; i < 16; i++)
+        {
+            casillaAtaque[i] = false;
+        }
+
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
 
         gameStats = GameObject.FindGameObjectWithTag("Stats").GetComponent<Stats>();
@@ -127,6 +138,7 @@ public class EnemyController : MonoBehaviour {
 
     void attack()
     {
+        TipoDeAataque();
         StartCoroutine(Attack());
     }
 
@@ -136,24 +148,33 @@ public class EnemyController : MonoBehaviour {
         float t = 0.0f;
         float duration = 2f;
 
+        for (int i = 0; i < 16; i++)
+        {
+            if (casillaAtaque[i] == true)
+            {
+                if(i == playerController.GetIndexPosition())
+                {
+                    gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
+                    playerController.TakeDamage();
+                }
+
+                Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, 0.45f, 0), Quaternion.identity);
+            }
+        }
+
         while (t < duration)
         {
             t += Time.deltaTime;
-            AttackImage.SetActive(true);
             yield return null;
         }
 
-        Debug.Log("ATACO");
-
-        if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
+        /*if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)
         {
-            Debug.Log("ATACO Y QUITO VIDA");
-
             gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
             playerController.TakeDamage();
-        }
+        }*/
 
-        AttackImage.SetActive(false);
+        //AttackImage.SetActive(false);
         playerController.SetTurn(true);
     }
 
@@ -235,6 +256,98 @@ public class EnemyController : MonoBehaviour {
             float yRotation = Mathf.Lerp(startRotation, endRotation, t / duracion) % 360.0f;
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, yRotation, transform.eulerAngles.z);
             yield return null;
+        }
+    }
+
+    //Tipo de ataque
+    void TipoDeAataque()
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            casillaAtaque[i] = false;
+        }
+
+        if (TipoAtaque == AtaqueEnum.Area2)
+        {
+            for(int i = -2; i < 3; i++)
+            {
+                if(indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Area3)
+        {
+            for (int i = -3; i < 4; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Area4)
+        {
+            for (int i = -4; i < 5; i++)
+            {
+                if (indexPosition + i >= 0 && indexPosition + i <= 16 && i != 0)
+                {
+                    casillaAtaque[indexPosition + i] = true;
+                }
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Impares)
+        {
+            for (int i = 1; i < 16; i+=2)
+            {
+                casillaAtaque[i] = true;
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Pares)
+        {
+            for (int i = 0; i < 16; i += 2)
+            {
+                casillaAtaque[i] = true;
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Negativos)
+        {
+            for (int i = 0; i <= 7; i ++)
+            {
+                casillaAtaque[i] = true;
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Positivos)
+        {
+            for (int i = 9; i < 16; i++)
+            {
+                casillaAtaque[i] = true;
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.TodosMenosCero)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                if(i != 8)
+                {
+                    casillaAtaque[i] = true;
+                }
+            }
+        }
+
+        if (TipoAtaque == AtaqueEnum.Primos)
+        {
+            casillaAtaque[10] = true;
+            casillaAtaque[13] = true;
+            casillaAtaque[15] = true;
         }
     }
 
