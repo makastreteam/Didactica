@@ -4493,6 +4493,18 @@ Prefab:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 641236946}
+    - target: {fileID: 114754546012041884, guid: 70dc1a1e527f3bf4fa385ef70c9da401,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 18076865147c3de4781ded3a0cfef706,
+        type: 3}
+    - target: {fileID: 114325721888009048, guid: 70dc1a1e527f3bf4fa385ef70c9da401,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a931aea4c2c14a344a7400d60ba722d0,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70dc1a1e527f3bf4fa385ef70c9da401, type: 2}
   m_IsPrefabAsset: 0

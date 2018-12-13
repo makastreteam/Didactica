@@ -52,8 +52,8 @@ public class calculadora : MonoBehaviour {
         }
         else
         {
-            lblvalor1.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
-            lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
+            lblvalor1.text = Random.Range(0, 11 * (gameStats.GetLevel())).ToString();
+            lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel())).ToString();
         }
 
     }
@@ -66,17 +66,17 @@ public class calculadora : MonoBehaviour {
         if (nivel == 1 && tiempo < 2f)
         {
             potion4.color = new Color(1, 1, 1, alpha);
-            alpha -= 0.75f * tiempo;
+            alpha -= 0.01f * tiempo;
         }
         else if ((nivel == 2 && tiempo < 2f))
         {
             potion3.color = new Color(1, 1, 1, alpha);
-            alpha -= 0.75f * tiempo;
+            alpha -= 0.01f * tiempo;
         }
         else if ((nivel == 3 && tiempo < 2f))
         {
             potion2.color = new Color(1, 1, 1, alpha);
-            alpha -= 0.75f * tiempo;
+            alpha -= 0.01f * tiempo;
         }else if (nivel == 4 && tiempo < 2f) {
             pergamino.SetActive(false);
             formula.SetActive(false);
@@ -85,7 +85,7 @@ public class calculadora : MonoBehaviour {
             potion2.color = new Color(1, 1, 1, alpha);
             potion3.color = new Color(1, 1, 1, alpha);
             potion4.color = new Color(1, 1, 1, alpha);
-            alpha -= 0.75f * tiempo;
+            alpha -= 0.01f * tiempo;
             rellenar = true;
         }
 
@@ -121,12 +121,17 @@ public class calculadora : MonoBehaviour {
 
     IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         Debug.Log("Next Level");
         resultado.text = "?";
         int operador = Random.Range(0, 3);
-        lblvalor1.text = Random.Range(0, 11*(gameStats.GetLevel()+1)).ToString();
-        lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel() + 1)).ToString();
+        lblvalor1.text = Random.Range(0, 11*(gameStats.GetLevel())).ToString();
+        lblvalor2.text = Random.Range(0, 11 * (gameStats.GetLevel())).ToString();
+        if (nivel <= 3)
+        {
+            botones.SetActive(true);
+
+        }
 
         if (gameStats.GetLevel()>=10) {
             operacion.text = "x";
@@ -170,6 +175,7 @@ public class calculadora : MonoBehaviour {
 
     public void igual()
     {
+        botones.SetActive(false);
         operacionActual = operacion.text;
         valor1 = lblvalor1.text;
         valor2 = lblvalor2.text;
