@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     bool[] casillaAtaque = new bool[17];
 
     public GameObject attackPrefab;
+    public List<GameObject> ataques;
 
     void Awake()
     {
@@ -159,7 +160,7 @@ public class EnemyController : MonoBehaviour
                     playerController.TakeDamage();
                 }
 
-                Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, 0.45f, 0), Quaternion.identity);
+                ataques.Add( Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, -0.45f, 0), Quaternion.identity));
             }
         }
 
@@ -167,6 +168,11 @@ public class EnemyController : MonoBehaviour
         {
             t += Time.deltaTime;
             yield return null;
+        }
+
+        foreach (GameObject ataque in ataques)
+        {
+            Destroy(ataque);
         }
 
         /*if (indexPosition - playerController.GetIndexPosition() <= 2 && indexPosition - playerController.GetIndexPosition() >= -2)

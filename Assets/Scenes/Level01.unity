@@ -294,7 +294,7 @@ MonoBehaviour:
   takeDamage: 4
   enemyModel: {fileID: 1239475459}
   TipoAtaque: 0
-  attackPrefab: {fileID: 1631874093754636, guid: 826d6e0adc5699342a3ca2171a72f657,
+  attackPrefab: {fileID: 1869083039800490, guid: 1c573452983919f44b3d5533fb7add62,
     type: 2}
 --- !u!1 &11819999
 GameObject:
