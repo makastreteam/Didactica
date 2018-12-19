@@ -712,12 +712,12 @@ Prefab:
     - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
         type: 2}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: -0.95
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
         type: 2}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.03
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
         type: 2}
@@ -766,12 +766,52 @@ Prefab:
     - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
         type: 2}
       propertyPath: autoRandomSeed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
         type: 2}
       propertyPath: randomSeed
-      value: -605277420
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: InitialModule.rotation3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: ShapeModule.randomDirectionAmount
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 199263524441684844, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: m_MaxParticleSize
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: startDelay.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198769937464193788, guid: d95cb4ade210b384ea7c9ef1aad695cc,
+        type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d95cb4ade210b384ea7c9ef1aad695cc, type: 2}
