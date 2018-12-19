@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour {
 
         if (enemyController.GetIndexPosition() == indexPosition)
         {
+            anim.SetTrigger("attack");
             enemyController.TakeDamage(damage);
             StartCoroutine(HitAnim());
         }

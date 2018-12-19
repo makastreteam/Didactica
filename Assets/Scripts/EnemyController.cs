@@ -150,6 +150,7 @@ public class EnemyController : MonoBehaviour
         float t = 0.0f;
         float duration = 2f;
 
+        anim.SetTrigger("attack");
         for (int i = 0; i <= 16; i++)
         {
             if (casillaAtaque[i] == true)
