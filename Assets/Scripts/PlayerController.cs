@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     Animator anim;
     Stats gameStats;
 
+    public AudioSource audioAtaque;
+
     void Awake()
     {
         this.transform.position = new Vector3(Position[0].transform.position.x, this.gameObject.transform.position.y, 0);
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour {
 
         if (enemyController.GetIndexPosition() == indexPosition)
         {
+            audioAtaque.Play();
             anim.SetTrigger("attack");
             enemyController.TakeDamage(damage);
             StartCoroutine(HitAnim());

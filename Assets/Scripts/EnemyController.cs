@@ -32,6 +32,9 @@ public class EnemyController : MonoBehaviour
     public GameObject attackPrefab;
     public List<GameObject> ataques;
 
+    public AudioSource audioPlayerHit;
+    public AudioSource audioEnemyAttack;
+
     void Awake()
     {
         this.transform.position = new Vector3(Position[Position.Length - 1].transform.position.x, this.gameObject.transform.position.y, 0);
@@ -140,7 +143,7 @@ public class EnemyController : MonoBehaviour
 
     void attack()
     {
-        TipoDeAataque();
+        TipoDeAtaque();
         StartCoroutine(Attack());
     }
 
@@ -150,6 +153,7 @@ public class EnemyController : MonoBehaviour
         float t = 0.0f;
         float duration = 2f;
 
+        audioEnemyAttack.Play();
         anim.SetTrigger("attack");
         for (int i = 0; i <= 16; i++)
         {
@@ -159,9 +163,10 @@ public class EnemyController : MonoBehaviour
                 {
                     gameStats.SetPlayerHealth(gameStats.GetPlayerHealth() - damage);
                     playerController.TakeDamage();
+                    audioPlayerHit.Play();
                 }
 
-                ataques.Add( Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, -0.45f, 0), Quaternion.identity));
+                ataques.Add( Instantiate(attackPrefab, new Vector3(Position[i].transform.position.x, -2f, 0), Quaternion.Euler(-90f,-90f,90f)));
             }
         }
 
@@ -268,7 +273,7 @@ public class EnemyController : MonoBehaviour
     }
 
     //Tipo de ataque
-    void TipoDeAataque()
+    void TipoDeAtaque()
     {
         for (int i = 0; i <= 16; i++)
         {
